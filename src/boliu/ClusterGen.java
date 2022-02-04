@@ -642,7 +642,7 @@ public class ClusterGen {
 			}
 		}
 		
-		// NOTE: this program code works only for the 2-dimensional data
+		// NOTE: this program code only reverses the first two coordinate values as only these are rotated in the first place for now
 		double origX, origY;
 		origX = GET_X_REV_ROTATION(clusterPoint.getM_coordinate(0), clusterPoint.getM_coordinate(1), clusterEntry.cosTheta, clusterEntry.sinTheta);
 		origY = GET_Y_REV_ROTATION(clusterPoint.getM_coordinate(0), clusterPoint.getM_coordinate(1), clusterEntry.cosTheta, clusterEntry.sinTheta);
@@ -661,12 +661,12 @@ public class ClusterGen {
 		CMDPoint lineSegmentPoint = m_lineSegmentPointArray.get(lineSegmentId);		//  2n-dimensional point
 		double coefficient;
 		
-		//  NOTE: this program code works only for the 2-dimensional data
+		//  NOTE: this program code works for all dimensions but only operates on the first two dimensions 
 		double newStartX, newEndX, newStartY, newEndY;
 		newStartX = GET_X_ROTATION(lineSegmentPoint.getM_coordinate(0), lineSegmentPoint.getM_coordinate(1), clusterEntry.cosTheta, clusterEntry.sinTheta);
-		newEndX   = GET_X_ROTATION(lineSegmentPoint.getM_coordinate(2), lineSegmentPoint.getM_coordinate(3), clusterEntry.cosTheta, clusterEntry.sinTheta);
+		newEndX   = GET_X_ROTATION(lineSegmentPoint.getM_coordinate(m_document.m_nDimensions + 0), lineSegmentPoint.getM_coordinate(m_document.m_nDimensions + 1), clusterEntry.cosTheta, clusterEntry.sinTheta);
 		newStartY = GET_Y_ROTATION(lineSegmentPoint.getM_coordinate(0), lineSegmentPoint.getM_coordinate(1), clusterEntry.cosTheta, clusterEntry.sinTheta);
-		newEndY   = GET_Y_ROTATION(lineSegmentPoint.getM_coordinate(2), lineSegmentPoint.getM_coordinate(3), clusterEntry.cosTheta, clusterEntry.sinTheta);
+		newEndY   = GET_Y_ROTATION(lineSegmentPoint.getM_coordinate(m_document.m_nDimensions + 0), lineSegmentPoint.getM_coordinate(m_document.m_nDimensions + 1), clusterEntry.cosTheta, clusterEntry.sinTheta);
 
 		coefficient = (currValue - newStartX) / (newEndX - newStartX);
 		sweepPoint.setM_coordinate(0, currValue);
@@ -698,8 +698,8 @@ public class ClusterGen {
 		CMDPoint aLineSegment = m_lineSegmentPointArray.get(lineSegmentId);
 		double orderingValue1 = GET_X_ROTATION(aLineSegment.getM_coordinate(0),
 				aLineSegment.getM_coordinate(1), clusterEntry.cosTheta, clusterEntry.sinTheta); 
-		double orderingValue2 = GET_X_ROTATION(aLineSegment.getM_coordinate(2), 
-				aLineSegment.getM_coordinate(3), clusterEntry.cosTheta, clusterEntry.sinTheta); 
+		double orderingValue2 = GET_X_ROTATION(aLineSegment.getM_coordinate(m_document.m_nDimensions + 0), 
+				aLineSegment.getM_coordinate(m_document.m_nDimensions + 1), clusterEntry.cosTheta, clusterEntry.sinTheta); 
 
 		CandidateClusterPoint existingCandidatePoint, newCandidatePoint1, newCandidatePoint2;
 		int i, j;
