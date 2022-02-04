@@ -2,6 +2,10 @@ package boliu;
 
 import boliu.TraClusterDoc.Parameter;
 
+/* WARNING: THE ESTIMATOR REPLICATES SOME STEPS!! Namely partition trajectory and possibly others. 
+So if you need to estimate parameters, get the estimates, but then run the thing again separately, do not rely on the sequence. 
+
+*/
 public class Main {
 		
 	public static void main(String[] args) {
