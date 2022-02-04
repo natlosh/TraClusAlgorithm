@@ -145,7 +145,14 @@ public class TraClusterDoc {
 				
 				double x = m_clusterList.get(i).getM_PointArray().get(j).getM_coordinate(0);
 				double y = m_clusterList.get(i).getM_PointArray().get(j).getM_coordinate(1);
-			System.out.print("   "+ x +" "+ y +"   ");
+				if (m_nDimensions == 3){
+					double z = m_clusterList.get(i).getM_PointArray().get(j).getM_coordinate(2);
+					System.out.print("   "+ x +" "+ y +" "+ z + "   ");
+					}
+			
+			 else { 
+				System.out.print("   "+ x +" "+ y + "   ");
+			}
 			}
 			System.out.println();
 		}
@@ -166,7 +173,12 @@ public class TraClusterDoc {
 					
 					double x = m_clusterList.get(i).getM_PointArray().get(j).getM_coordinate(0);
 					double y = m_clusterList.get(i).getM_PointArray().get(j).getM_coordinate(1);
-					bw.write(x+" "+y+"   ");
+					if (m_nDimensions == 3) {
+						double z = m_clusterList.get(i).getM_PointArray().get(j).getM_coordinate(2);
+						bw.write(x+" "+y+" " + z + "   ");
+					} else {
+					bw.write(x+" "+y + "   ");
+				}
 				}
 			}						
 			
